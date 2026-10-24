@@ -1,10 +1,12 @@
 import React from 'react'
+import Chai from './Chai'
 
 const App = () => {
   return (
-    <div>
-      Chai aur react with vite | yub
-    </div>
+    <>
+    <h1>This is main app page</h1>
+      <Chai />
+    </>
   )
 }
 
