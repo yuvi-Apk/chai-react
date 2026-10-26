@@ -1,4 +1,9 @@
+import { useParams } from "react-router";
+
 export default function About() {
+
+    const {aboutId} = useParams();
+
     return (
         <div className="py-16 bg-white">
             <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
@@ -12,6 +17,8 @@ export default function About() {
                     <div className="md:7/12 lg:w-6/12">
                         <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
                             React development is carried out by passionate developers
+
+                            <span>This is my about id: {aboutId ?? "Not Provided"}</span>
                         </h2>
                         <p className="mt-6 text-gray-600">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum omnis voluptatem

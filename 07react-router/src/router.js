@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "contact", Component: Contact },
-      { path: "about", Component: About },
+      { path: "about/:aboutId?", Component: About },
 
       {
         path: "github",
