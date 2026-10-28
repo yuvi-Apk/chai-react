@@ -20,7 +20,10 @@ const App = () => {
     const html = document.querySelector("html");
     html?.classList.remove("light", "dark");
     html?.classList.add(themeMode);
-  }, []);
+
+    // solution 2
+    document.documentElement.setAttribute("data-theme", themeMode);
+  }, [themeMode]);
 
   return (
     <ThemeProvider value={{ darkTheme, lightTheme, themeMode }}>
