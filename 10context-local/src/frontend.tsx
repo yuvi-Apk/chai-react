@@ -4,10 +4,10 @@
  *
  * It is included in `src/index.html`.
  */
-
+import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./App";
+import  App  from "./App";
 
 const elem = document.getElementById("root")!;
 const app = (
