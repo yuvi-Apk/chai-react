@@ -1,5 +1,6 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
+import "./tinymce-setup";
 
 // Rich text editor wired into react-hook-form via <Controller>.
 // Usage: <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
@@ -14,7 +15,7 @@ const RTE = ({ name, control, label, defaultValue = "" }) => {
                 defaultValue={defaultValue}
                 render={({ field: { onChange, onBlur, value } }) => (
                     <Editor
-                        apiKey={process.env.BUN_PUBLIC_TINYMCE_API_KEY || "no-api-key"}
+                        licenseKey="gpl"
                         initialValue={defaultValue}
                         value={value}
                         onEditorChange={onChange}

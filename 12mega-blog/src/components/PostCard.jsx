@@ -3,16 +3,16 @@ import service from "../appwrite/service";
 
 function PostCard({ $id, title, featuredImage }) {
   return (
-    <Link to={`/post/${$id}`}>
-      <div className="w-full rounded-xl bg-gray-100 p-4">
-        <div className="mb-4 w-full justify-center">
+    <Link to={`/post/${$id}`} className="group block">
+      <div className="h-full w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-colors group-hover:border-indigo-500/60">
+        <div className="aspect-video w-full overflow-hidden bg-zinc-800">
           <img
-            src={service.getFilePreview(featuredImage)}
+            src={service.getFileView(featuredImage)}
             alt={title}
-            className="rounded-xl"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
-        <h2 className="text-xl font-bold">{title}</h2>
+        <h2 className="p-4 text-lg font-semibold text-white">{title}</h2>
       </div>
     </Link>
   );

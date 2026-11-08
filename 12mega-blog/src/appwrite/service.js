@@ -1,5 +1,13 @@
 import config from "@/config/config";
-import { Client, ID, TablesDB, Storage, Query } from "appwrite";
+import { Client, ID, TablesDB, Storage, Query, Permission, Role } from "appwrite";
+
+// Everyone can read; only the owner can change or delete.
+// (Takes effect when "Row security" / "File security" is enabled in the console.)
+const ownerPermissions = (userId) => [
+  Permission.read(Role.any()),
+  Permission.update(Role.user(userId)),
+  Permission.delete(Role.user(userId)),
+];
 
 export class Service {
   client = new Client();
@@ -22,7 +30,8 @@ export class Service {
         databaseId: config.appwriteDatabaseId,
         tableId: config.appwriteCollectionId,
         rowId: slug,
-        data: { title, content, featuredImage, status, userId },
+        data: { title, slug, content, featuredImage, status, userId },
+        permissions: ownerPermissions(userId),
       });
     } catch (error) {
       console.log("Appwrite service :: createPost :: error", error);
@@ -84,12 +93,13 @@ export class Service {
 
   // ---------- file upload ----------
 
-  async uploadFile(file) {
+  async uploadFile(file, userId) {
     try {
       return await this.bucket.createFile({
         bucketId: config.appwriteBucketId,
         fileId: ID.unique(),
         file,
+        ...(userId && { permissions: ownerPermissions(userId) }),
       });
     } catch (error) {
       console.log("Appwrite service :: uploadFile :: error", error);
@@ -112,6 +122,15 @@ export class Service {
 
   getFilePreview(fileId) {
     return this.bucket.getFilePreview({
+      bucketId: config.appwriteBucketId,
+      fileId,
+    });
+  }
+
+  // Original file URL. Unlike getFilePreview it needs no image
+  // transformations, so it also works on Appwrite's free plan.
+  getFileView(fileId) {
+    return this.bucket.getFileView({
       bucketId: config.appwriteBucketId,
       fileId,
     });

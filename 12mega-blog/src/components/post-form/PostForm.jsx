@@ -41,7 +41,7 @@ const PostForm = ({ post }) => {
     const submit = async (data) => {
         if (post) {
             // Editing: upload a new image only if one was picked, then remove the old one.
-            const file = data.image?.[0] ? await service.uploadFile(data.image[0]) : null;
+            const file = data.image?.[0] ? await service.uploadFile(data.image[0], userData.$id) : null;
             if (file) await service.deleteFile(post.featuredImage);
 
             const dbPost = await service.updatePost(post.$id, {
@@ -50,7 +50,7 @@ const PostForm = ({ post }) => {
             });
             if (dbPost) navigate(`/post/${dbPost.$id}`);
         } else {
-            const file = await service.uploadFile(data.image[0]);
+            const file = await service.uploadFile(data.image[0], userData.$id);
             if (!file) return;
 
             const dbPost = await service.createPost({
@@ -122,7 +122,7 @@ const PostForm = ({ post }) => {
                 {post && (
                     <div className="mb-4 w-full">
                         <img
-                            src={service.getFilePreview(post.featuredImage)}
+                            src={service.getFileView(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
