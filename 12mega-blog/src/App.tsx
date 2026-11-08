@@ -24,14 +24,14 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen grid place-items-center bg-zinc-950">
-        <div className="w-10 h-10 rounded-full border-4 border-zinc-700 border-t-indigo-500 animate-spin" />
+      <div className="grid min-h-screen place-items-center bg-zinc-950">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-zinc-700 border-t-indigo-500" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100">
+    <div className="flex min-h-screen flex-col bg-zinc-950 text-zinc-100">
       <Header />
       <main className="flex-1">
         <Outlet />

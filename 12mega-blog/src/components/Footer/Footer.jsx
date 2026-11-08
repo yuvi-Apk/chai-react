@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import Container from "../Container/Container";
-import Logo from "../Logo/Logo";
+import { Container, Logo } from "../index";
 
 const footerLinks = [
   {
@@ -35,14 +34,15 @@ const Footer = () => {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo />
-            <p className="mt-4 text-sm text-zinc-400 leading-relaxed max-w-xs">
-              A place to write, read, and share ideas. Built with React, Redux and Appwrite.
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-zinc-400">
+              A place to write, read, and share ideas. Built with React, Redux
+              and Appwrite.
             </p>
           </div>
 
           {footerLinks.map((section) => (
             <div key={section.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              <h3 className="text-xs font-semibold tracking-wider text-zinc-500 uppercase">
                 {section.title}
               </h3>
               <ul className="mt-4 space-y-3">
@@ -50,7 +50,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       to={link.to}
-                      className="text-sm text-zinc-400 hover:text-indigo-400 transition-colors"
+                      className="text-sm text-zinc-400 transition-colors hover:text-indigo-400"
                     >
                       {link.name}
                     </Link>
@@ -61,7 +61,7 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="mt-12 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-6 sm:flex-row">
           <p className="text-xs text-zinc-500">
             &copy; {new Date().getFullYear()} MegaBlog. All rights reserved.
           </p>

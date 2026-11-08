@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router";
-import Container from "../Container/Container";
-import Logo from "../Logo/Logo";
-import LogoutBtn from "./LogoutBtn";
+import { Container, Logo, LogoutBtn } from "../index";
 
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
@@ -35,7 +33,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-1">
+          <ul className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
               <li key={item.slug}>
                 <NavLink
@@ -56,15 +54,29 @@ const Header = () => {
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 rounded-lg text-zinc-300 hover:bg-zinc-800"
+            className="rounded-lg p-2 text-zinc-300 hover:bg-zinc-800 md:hidden"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
               {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -72,14 +84,16 @@ const Header = () => {
 
         {/* Mobile nav */}
         {menuOpen && (
-          <ul className="md:hidden flex flex-col gap-1 pb-4">
+          <ul className="flex flex-col gap-1 pb-4 md:hidden">
             {navItems.map((item) => (
               <li key={item.slug}>
                 <NavLink
                   to={item.slug}
                   end={item.slug === "/"}
                   onClick={() => setMenuOpen(false)}
-                  className={(state) => `block ${linkClass(state, item.primary)}`}
+                  className={(state) =>
+                    `block ${linkClass(state, item.primary)}`
+                  }
                 >
                   {item.name}
                 </NavLink>

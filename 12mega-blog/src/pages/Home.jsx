@@ -8,10 +8,10 @@ const Home = () => {
 
   return (
     <Container className="py-24 text-center">
-      <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white">
+      <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
         Write. Share. <span className="text-indigo-400">Inspire.</span>
       </h1>
-      <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
+      <p className="mx-auto mt-4 max-w-xl text-zinc-400">
         {authStatus
           ? "Welcome back! Check out the latest posts or write a new one."
           : "Login to read and publish posts on MegaBlog."}
@@ -19,13 +19,13 @@ const Home = () => {
       <div className="mt-8 flex justify-center gap-3">
         <Link
           to={authStatus ? "/all-posts" : "/login"}
-          className="px-5 py-2.5 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-500 transition-colors"
+          className="rounded-lg bg-indigo-600 px-5 py-2.5 font-medium text-white transition-colors hover:bg-indigo-500"
         >
           {authStatus ? "Browse Posts" : "Login"}
         </Link>
         <Link
           to={authStatus ? "/add-post" : "/signup"}
-          className="px-5 py-2.5 rounded-lg border border-zinc-700 text-zinc-200 font-medium hover:bg-zinc-800 transition-colors"
+          className="rounded-lg border border-zinc-700 px-5 py-2.5 font-medium text-zinc-200 transition-colors hover:bg-zinc-800"
         >
           {authStatus ? "Add Post" : "Create Account"}
         </Link>
